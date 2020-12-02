@@ -5,9 +5,6 @@ $login = "jose";
 $password = "1234567890";
 $stmt->bindParam(":LOGIN", $login);
 $stmt->bindParam(":PASSWORD", $password);
-
 $stmt->execute();
-
 echo "Inserido ok."
-
 ?>
