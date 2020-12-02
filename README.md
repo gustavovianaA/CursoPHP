@@ -1,2 +1,2 @@
 # CursoPHP
-Notas do curso de PHP7 
+Estudos de PHP
