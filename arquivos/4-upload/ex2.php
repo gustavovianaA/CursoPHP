@@ -1,25 +1,25 @@
 <?php
 define("IMAGE_FORMATS", ["png","jpg"]);
 function generateThumb($dir,$file){
-$origin = $dir . DIRECTORY_SEPARATOR . $file;
-$destination = $dir . DIRECTORY_SEPARATOR . "thumb";
-if(!is_dir($destination)){
-	mkdir($destination);
-}
-list($old_width,$old_heigth) = getimagesize($origin);
-$resizeValue = 0.2;
-$newSize = ["w"=>$old_width*$resizeValue , "h"=>$old_heigth*$resizeValue];
-$newImage = imagecreatetruecolor($newSize["w"], $newSize["h"]);
-$oldImage = imagecreatefromstring(file_get_contents($origin));
-imagecopyresampled($newImage, $oldImage, 0, 0, 0, 0, $newSize["w"], $newSize["h"], $old_width, $old_heigth);
-if(imagejpeg($newImage ,$destination . DIRECTORY_SEPARATOR . $file, 90)){
-	echo "Thumb gerado com sucesso";
-}else{
-	throw new Exception("Não foi possível gerar o thumb.");
-	
-}
-imagedestroy($oldImage);
-imagedestroy($newImage);
+	$origin = $dir . DIRECTORY_SEPARATOR . $file;
+	$destination = $dir . DIRECTORY_SEPARATOR . "thumb";
+	if(!is_dir($destination)){
+		mkdir($destination);
+	}
+	list($old_width,$old_heigth) = getimagesize($origin);
+	$resizeValue = 0.2;
+	$newSize = ["w"=>$old_width*$resizeValue , "h"=>$old_heigth*$resizeValue];
+	$newImage = imagecreatetruecolor($newSize["w"], $newSize["h"]);
+	$oldImage = imagecreatefromstring(file_get_contents($origin));
+	imagecopyresampled($newImage, $oldImage, 0, 0, 0, 0, $newSize["w"], $newSize["h"], $old_width, $old_heigth);
+	if(imagejpeg($newImage ,$destination . DIRECTORY_SEPARATOR . $file, 90)){
+		echo "Thumb gerado com sucesso";
+	}else{
+		throw new Exception("Não foi possível gerar o thumb.");
+		
+	}
+	imagedestroy($oldImage);
+	imagedestroy($newImage);
 }
 if($_SERVER["REQUEST_METHOD"] === "POST"){
 	$file = $_FILES["fileUpload"];
