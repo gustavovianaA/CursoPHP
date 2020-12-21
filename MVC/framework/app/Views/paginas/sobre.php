@@ -1,1 +1,1 @@
-<h1><?= $dados['tituloPagina']?></h1>
+<h1><?= $dados['tituloPagina'] ; var_dump($dados)?></h1>
