@@ -1,17 +1,32 @@
 <?php
-class Paginas extends Controller{
+
+class Paginas extends Controller {
+
     public function index(){
+        if (Sessao::estaLogado()) :
+            Url::redirecionar('posts');
+        endif;
+
         $dados = [
-            'tituloPagina'=>'Página Inicial',
-            'descricao'=>'curso de PHP 7 MVC'
+            'tituloPagina' => 'Página Inicial'
         ];
-        $this->view('paginas/home',$dados);
+
+        $this->view('paginas/home', $dados);
     }
+
     public function sobre(){
         $dados = [
-            'tituloPagina'=>'Página Sobre nós',
-            'descricao'=>'curso de PHP 7 MVC'
+            'tituloPagina' => APP_NOME
         ];
-        $this->view('paginas/sobre',$dados);
+
+        $this->view('paginas/sobre', $dados);
     }
+    public function error(){
+        $dados = [
+            'tituloPagina' => 'Erro - Página não encontrada'
+        ];
+
+        $this->view('paginas/error', $dados);
+    }
+    
 }
